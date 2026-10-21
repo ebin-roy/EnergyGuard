@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyze | EnergyGuard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="energy-header">
+            <a href="/" class="energy-brand">
+                <span class="brand-icon">⚡</span>
+                EnergyGuard
+            </a>
+            <span class="header-label">Electricity Anomaly Detection</span>
+        </header>
+
+
+        <!-- INTRODUCTION -->
+        <section class="analyze-intro">
+            <div class="intro-content">
+                <span class="section-label">ENERGY INTELLIGENCE</span>
+
+                <h2>
+                    Every reading tells<br>
+                    <span>a story.</span>
+                </h2>
+
+                <p>
+                    Analyze complete consumer records using machine learning
+                    to identify electricity consumption anomalies and potential theft.
+                </p>
+
+                <div class="intro-points">
+                    <span>✓ Consumption analysis</span>
+                    <span>✓ Anomaly assessment</span>
+                </div>
+            </div>
+
+            <div class="intro-visual">
+                <div class="visual-orbit orbit-one"></div>
+                <div class="visual-orbit orbit-two"></div>
+
+                <div class="energy-symbol">⚡</div>
+
+                <div class="visual-label label-top">
+                    <span class="mini-dot"></span>
+                    ENERGY PATTERNS
+                </div>
+
+                <div class="visual-label label-bottom">
+                    <span>↗</span>
+                    Smart analysis
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ANALYSIS METHODS -->
+        <section class="analysis-section">
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-label">ANALYSIS METHOD</span>
+                    <h2>Upload Consumption Dataset</h2>
+                    <p>Upload a consumer record to run predictions with the trained model.</p>
+                </div>
+            </div>
+
+
+            <div class="analysis-cards">
+
+                <!-- CSV ANALYSIS -->
+                <article class="analysis-card csv-card">
+
+                    <div class="card-topline">
+                        <div class="method-icon csv-icon">▤</div>
+                        <span class="method-tag csv-tag">MACHINE LEARNING</span>
+                    </div>
+
+                    <h3>CSV Analysis</h3>
+
+                    <p class="card-description">
+                        Upload a consumer's electricity consumption record
+                        for analysis with the trained anomaly detection model.
+                    </p>
+
+                    <div class="upload-preview">
+                        <div class="file-icon">CSV</div>
+
+                        <div class="file-preview-text">
+                            <strong>Consumption dataset</strong>
+                            <span>CSV file · Validated input required</span>
+                        </div>
+
+                        <span class="upload-check">↑</span>
+                    </div>
+
+                    <ul class="method-features">
+                        <li>Upload a supported CSV file</li>
+                        <li>Validate the expected data format</li>
+                        <li>Obtain a model prediction</li>
+                    </ul>
+
+                    <a href="#csv-form" class="method-button csv-button">
+                        Upload Dataset <span>→</span>
+                    </a>
+
+                </article>
+
+            </div>
+        </section>
+
+
+        <!-- CSV UPLOAD FORM -->
+        <section class="input-panel" id="csv-form">
+
+            <div class="input-panel-heading">
+                <div class="method-icon csv-icon">▤</div>
+
+                <div>
+                    <span class="section-label">CSV BATCH AUDIT</span>
+                    <h2>Upload Consumption Dataset</h2>
+                    <p>Choose a CSV file containing a consumer's readings.</p>
+                </div>
+            </div>
+
+            <form action="/predict" method="POST"
+                  enctype="multipart/form-data" class="analysis-form">
+
+                <label for="csv_file" class="upload-dropzone">
+                    <span class="dropzone-icon">↑</span>
+                    <strong>Choose a CSV file to upload</strong>
+                    <span>CSV format only · Input columns must match the model</span>
+                    <input
+                        type="file"
+                        id="csv_file"
+                        name="csv_file"
+                        accept=".csv,text/csv"
+                        required>
+                </label>
+
+                <p class="form-note">
+                    <span>ⓘ</span>
+                    The trained model expects a specific set of consumption features matching the SGCC smart grid format.
+                </p>
+
+                <button type="submit" class="method-button csv-button">
+                    Analyze CSV <span>→</span>
+                </button>
+            </form>
+        </section>
+
+
+        <!-- DATA GUIDANCE -->
+        <section class="guidance-panel">
+            <div class="guidance-icon">✦</div>
+
+            <div>
+                <h3>For meaningful results</h3>
+                <p>
+                    Make sure readings are valid and the uploaded CSV follows
+                    the model's expected format. Unusual consumption alone
+                    does not prove electricity theft or a fault.
+                </p>
+            </div>
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+            <p>EnergyGuard · Electricity Consumption Anomaly Detection</p>
+            <p>MCA Mini Project</p>
+        </footer>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Electricity Anomaly Detection</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span class="logo-icon">⚡</span>
+            <span>EnergyGuard</span>
+        </div>
+
+        <nav class="nav-menu">
+
+            <a href="/" class="nav-link active">
+                <span>▣</span>
+                Dashboard
+            </a>
+
+            <a href="/analyze" class="nav-link">
+                <span>⌁</span>
+                Analyze
+            </a>
+
+            <a href="/history" class="nav-link">
+                <span>◷</span>
+                History
+            </a>
+
+            <a href="#about" class="nav-link">
+                <span>ⓘ</span>
+                About
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <p>Electricity</p>
+            <p>Anomaly Detection</p>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div>
+                <h1>Dashboard</h1>
+                <p>Electricity Consumption Monitoring</p>
+            </div>
+
+            <div class="system-status">
+                <span class="status-dot"></span>
+                System Ready
+            </div>
+
+        </header>
+
+
+        <!-- STAT CARDS -->
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    👥
+                </div>
+
+                <div>
+                    <p>Total Consumers</p>
+                    <h2>42,289</h2>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    ✓
+                </div>
+
+                <div>
+                    <p>Normal</p>
+                    <h2>38,695</h2>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon red">
+                    !
+                </div>
+
+                <div>
+                    <p>Anomalous</p>
+                    <h2>3,594</h2>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon orange">
+                    %
+                </div>
+
+                <div>
+                    <p>Anomaly Rate</p>
+                    <h2>8.50%</h2>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DASHBOARD GRID -->
+        <section class="dashboard-grid">
+
+
+            <!-- CONSUMPTION OVERVIEW -->
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h2>Consumption Overview</h2>
+                        <p>Electricity consumption analysis</p>
+                    </div>
+
+                    <span class="panel-badge">
+                        SGCC Dataset
+                    </span>
+
+                </div>
+
+
+                <div class="chart-placeholder">
+
+                    <div class="chart-line"></div>
+
+                    <div class="chart-message">
+                        <span>📊</span>
+                        <p>Consumption trend visualization</p>
+                        <small>
+                            Chart will be connected to the dataset later.
+                        </small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DETECTION STATUS -->
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h2>Detection Status</h2>
+                        <p>Current anomaly distribution</p>
+                    </div>
+
+                </div>
+
+
+                <div class="detection-container">
+
+                    <div class="detection-circle">
+
+                        <div class="circle-inner">
+                            <strong>8.5%</strong>
+                            <span>Anomalous</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="detection-info">
+
+                        <div class="legend-item">
+                            <span class="legend-dot normal"></span>
+                            <span>Normal</span>
+                            <strong>91.5%</strong>
+                        </div>
+
+                        <div class="legend-item">
+                            <span class="legend-dot anomalous"></span>
+                            <span>Anomalous</span>
+                            <strong>8.5%</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUICK ACTION -->
+        <section class="quick-action">
+
+            <div>
+
+                <h2>Analyze Electricity Consumption</h2>
+
+                <p>
+                    Upload electricity consumption data to check
+                    whether the consumption pattern is normal or anomalous.
+                </p>
+
+            </div>
+
+            <a href="/analyze" class="primary-button">
+                Analyze Now →
+            </a>
+
+        </section>
+
+
+        <!-- RECENT PREDICTIONS -->
+        <section class="panel recent-panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>Recent Predictions</h2>
+                    <p>Latest anomaly detection results</p>
+                </div>
+
+                <a href="/history" class="view-all">
+                    View All →
+                </a>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Consumer ID</th>
+                            <th>Prediction</th>
+                            <th>Model</th>
+                            <th>Status</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>CONS_001</td>
+
+                            <td>Normal</td>
+
+                            <td>Random Forest</td>
+
+                            <td>
+                                <span class="badge normal-badge">
+                                    Normal
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>CONS_002</td>
+
+                            <td>Anomalous</td>
+
+                            <td>Random Forest</td>
+
+                            <td>
+                                <span class="badge anomaly-badge">
+                                    Anomalous
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>CONS_003</td>
+
+                            <td>Normal</td>
+
+                            <td>Random Forest</td>
+
+                            <td>
+                                <span class="badge normal-badge">
+                                    Normal
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ABOUT -->
+        <section class="about-section" id="about">
+
+            <h2>About the System</h2>
+
+            <p>
+                Machine Learning-Based Electricity Consumption Anomaly
+                Detection System analyzes electricity consumption patterns
+                and identifies potentially anomalous consumption behavior
+                using machine learning techniques.
+            </p>
+
+            <div class="technology-list">
+
+                <span>Python</span>
+                <span>Machine Learning</span>
+                <span>Flask</span>
+                <span>SGCC Dataset</span>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            <p>
+                Electricity Consumption Anomaly Detection System
+            </p>
+
+            <p>
+                MCA Mini Project
+            </p>
+
+        </footer>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | EnergyGuard</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="energy-header">
+        <a href="/" class="energy-brand">
+            <span class="brand-icon">⚡</span>
+            EnergyGuard
+        </a>
+        <span class="header-label">Electricity Anomaly Detection</span>
+    </header>
+
+    <main class="main-content">
+        <section class="input-panel">
+            <span class="section-label">ANALYSIS RESULT</span>
+            <h1>{{ title }}</h1>
+            <h2>{{ prediction }}</h2>
+
+            {% if source == "csv" %}
+                <p>Rows read: {{ rows }}</p>
+                <p>Columns read: {{ columns }}</p>
+
+            {% elif source == "ml" %}
+                <p><strong>Total consumers:</strong> {{ rows }}</p>
+                <p><strong>Normal consumers:</strong> {{ normal }}</p>
+                <p><strong>Anomalous consumers:</strong> {{ anomalous }}</p>
+
+                <h2>Prediction Summary</h2>
+
+                <div style="max-width: 650px; margin: 20px auto;">
+                    <canvas id="predictionChart"></canvas>
+                </div>
+
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <script>
+                    const normalCount = Number("{{ normal }}");
+                    const anomalousCount = Number("{{ anomalous }}");
+
+                    const chartCanvas = document.getElementById("predictionChart");
+
+                    if (chartCanvas) {
+                        new Chart(chartCanvas, {
+                            type: "doughnut",
+                            data: {
+                                labels: ["Normal", "Anomalous"],
+                                datasets: [{
+                                    data: [normalCount, anomalousCount],
+                                    backgroundColor: ["#299764", "#E58B48"],
+                                    borderWidth: 2
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        position: "bottom"
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: "Electricity Consumption Classification"
+                                    }
+                                }
+                            }
+                        });
+                    }
+                </script>
+
+                <h2>Consumer Prediction Details</h2>
+
+                <form method="POST" action="{{ url_for('download_results') }}">
+                    <input
+                        type="hidden"
+                        name="results_json"
+                        value="{{ results | tojson | forceescape }}"
+                    >
+                    <button type="submit" class="download-button">
+                        Download Predictions CSV
+                    </button>
+                </form>
+
+                <div style="overflow-x: auto; margin-top: 20px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Consumer</th>
+                                <th>Prediction</th>
+                                <th>Anomaly Probability</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in results %}
+                            <tr>
+                                <td>{{ item.Consumer }}</td>
+                                <td>
+                                    {% if item.Prediction == "Anomalous" %}
+                                        <span style="color: #d97706; font-weight: bold;">
+                                            {{ item.Prediction }}
+                                        </span>
+                                    {% else %}
+                                        <span style="color: #299764; font-weight: bold;">
+                                            {{ item.Prediction }}
+                                        </span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ item["Anomaly Probability (%)"] }}%</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
+
+            <a href="/" class="method-button manual-button">
+                Back to EnergyGuard
+            </a>
+        </section>
+    </main>
+</body>
+</html>
